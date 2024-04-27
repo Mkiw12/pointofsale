@@ -22,4 +22,14 @@ public class Controller
         new AccountingSystem();
     }
 
+    public void CreateInventorySystem()
+    {
+        new AccountingSystem();
+    }
+    
+    public void CreateDIscountHandler()
+    {
+        new DiscountHandler();
+    }
+
 }
