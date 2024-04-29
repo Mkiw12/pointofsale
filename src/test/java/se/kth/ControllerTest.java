@@ -1,11 +1,5 @@
 package se.kth;
 
-<<<<<<< HEAD
-import se.kth.controller.*;
-
-import org.junit.jupiter.api.BeforeEach;
-=======
->>>>>>> d68d57b051bc1be7570f36de6c296950ee998dea
 import org.junit.jupiter.api.Test;
 import se.kth.integration.*;
 
