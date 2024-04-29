@@ -11,4 +11,10 @@ public class View
     {
         this.control = control;
     }
+
+    public void runFakeExe()
+    {
+        control.initialteSale();
+        System.out.println("A new sale has started");
+    }
 }

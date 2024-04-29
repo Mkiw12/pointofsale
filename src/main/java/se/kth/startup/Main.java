@@ -24,4 +24,5 @@ public class Main
         Controller control = new Controller(print, SaleL);
         new View(control);
     }
+    
 }
