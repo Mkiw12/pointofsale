@@ -12,7 +12,6 @@ public class Controller
 
     private Printer print;
 
-
     private SalesLog SaleL;
 
     private Sale sale;
@@ -30,24 +29,26 @@ public class Controller
         this.SaleL = SaleL;
     }
 
-
     public void CreateAccountSystem()
     {
         new AccountingSystem();
     }
-
 
     public void CreateInventorySystem()
     {
         new InventorySystem();
     }
 
-
     public void CreateDiscountHandler()
     {
         new DiscountHandler();
     }
 
+
+
+
+
+    
     public void CreateSale()
     {
         new Sale();
