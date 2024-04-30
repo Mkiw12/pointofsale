@@ -39,6 +39,14 @@ public class InventorySystem
         return null;
     }
 
-
+    public boolean legitID(int itemId)
+    {
+        for (ItemDTO item : items) {
+            if (item.getItemId() == itemId) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

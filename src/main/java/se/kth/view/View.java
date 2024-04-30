@@ -14,18 +14,26 @@ public class View {
 
     public void runFakeExe() {
         controller.initiateSale();
+        System.out.println("New sale has started.");
 
         boolean shopping = true;
         while (shopping) {
             System.out.print("Enter item ID to add to cart (0 to end sale): ");
             int itemId = scanner.nextInt();
             if (itemId == 0) {
-                controller.endSale();
+                System.out.println("Sale completed. Total due: $" + controller.endSale());
+                //controller.endSale();
                 shopping = false;
             } else {
                 System.out.print("Enter quantity: ");
                 int quantity = scanner.nextInt();
-                controller.scanItems(itemId, quantity);
+                //controller.scanItems(itemId, quantity);
+                boolean itemAdded = controller.scanItems(itemId, quantity);
+                if (itemAdded) {
+                    System.out.println("Added " + quantity + " of " + "item" + " to the cart.");
+                } else {
+                    System.out.println("Item with ID " + itemId + " not found.");
+                }
             }
         }
 

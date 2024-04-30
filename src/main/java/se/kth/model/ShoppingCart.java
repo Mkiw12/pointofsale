@@ -23,6 +23,7 @@ public class ShoppingCart {
                 // Update existing item's quantity
                 currentIterationItem.setQuantity(currentIterationItem.getQuantity() + quantity);
                 itemAlreadyRegistered = true;
+                System.out.println("Added " + quantity + " of " + item.getItemName() + " to the cart.");
                 break; // Break as we've found and updated the item
             }
         }
