@@ -3,11 +3,11 @@ package se.kth.model;
 public class ItemDTO 
 {
     private String itemName;
-    private float itemVat;
+    private double itemVat;
     private int itemID;
-    private float itemPrice;
+    private double itemPrice;
 
-    public ItemDTO(String itemName, float itemPrice, int itemID, double d)
+    public ItemDTO(String itemName, double itemPrice, int itemID, double itemVat)
     {
         this.itemName = itemName;
         this.itemPrice = itemPrice;
@@ -23,11 +23,11 @@ public class ItemDTO
         return itemID;
     }
     
-    public float getPrice(){
+    public double getPrice(){
         return itemPrice;
     }
     
-    public float getVAT(){
+    public double getVAT(){
         return itemVat;
     }
     

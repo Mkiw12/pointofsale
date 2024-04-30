@@ -1,67 +1,37 @@
 package se.kth.controller;
 
-import static org.junit.jupiter.api.Assumptions.abort;
+import se.kth.integration.InventorySystem;
+import se.kth.model.ShoppingCart;
+import se.kth.model.ItemDTO;
 
-import se.kth.integration.*;
-import se.kth.model.*;
+public class Controller {
+    private ShoppingCart cart;
+    private InventorySystem inventory;
 
-//
-
-public class Controller 
-{
-
-    private Printer print;
-
-    private SalesLog SaleL;
-
-    private Sale sale;
-
-    /**
-    * Constructs a new Controller instance with specified printer and sales log services.
-    * This constructor allows for dependency injection, enabling easier management and testing of the Controller's dependencies.
-    * 
-    * @param print  the Printer instance that this controller will use to handle all printing tasks.
-    * @param SaleL  the SalesLog instance that this controller will use to manage sales-related data and operations.
-    */
-    public Controller(Printer print, SalesLog SaleL)
-    {
-        this.print = print;
-        this.SaleL = SaleL;
+    public Controller(InventorySystem inventory) {
+        this.inventory = inventory;
+        this.cart = new ShoppingCart(); // Initialize the shopping cart here or in initiateSale
     }
 
-    public void CreateAccountSystem()
-    {
-        new AccountingSystem();
+    public void initiateSale() {
+        // Reset or prepare the shopping cart for a new sale
+        this.cart = new ShoppingCart(); // Optionally create a new cart for each sale
+        System.out.println("New sale has started.");
     }
 
-    public void CreateInventorySystem()
-    {
-        new InventorySystem();
+    public void scanItems(int itemId, int quantity) {
+        ItemDTO item = inventory.findItemById(itemId);
+        if (item != null) {
+            cart.addItem(item, quantity);
+            System.out.println("Added " + quantity + " of " + item.getItemName() + " to the cart.");
+        } else {
+            System.out.println("Item with ID " + itemId + " not found.");
+        }
     }
 
-    public void CreateDiscountHandler()
-    {
-        new DiscountHandler();
+    public void endSale() {
+        double total = cart.getTotalCost();
+        System.out.println("Sale completed. Total due: $" + total);
+        // Here you might also want to update inventory and log the sale details
     }
-
-
-
-
-
-    
-    public void CreateSale()
-    {
-        new Sale();
-    }
-
-    public void initialteSale()
-    {
-        sale = new Sale();
-    }
-
-    public void createShoppingCart()
-    {
-        new ShoppingCart();
-    }
-
 }

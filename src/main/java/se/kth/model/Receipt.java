@@ -2,7 +2,11 @@ package se.kth.model;
 
 public class Receipt 
 {
+    private float change;
+    private SaleDTO updatedSalePrice;
+    private Receipt receipt;
     
+<<<<<<< Updated upstream
     private SaleDTO saleDetails;
 
     // constructor
@@ -33,10 +37,21 @@ public class Receipt
         sb.append("-----------------\n");
         sb.append("Thank you for shopping!\n");
         return sb.toString();
+=======
+<<<<<<< Updated upstream
+    public Receipt(){
+>>>>>>> Stashed changes
 
     }
 
 
 
 
+=======
+    public Receipt createReceipt(float change, SaleDTO updatedSalePrice)
+    {
+        return receipt;
+    }
+
+>>>>>>> Stashed changes
 }

@@ -9,6 +9,8 @@ public class Sale
     private Receipt receipt;
     private int itemQuant;
 
+
+
     public Sale()
     {
         setTimeOfSale();
@@ -26,7 +28,10 @@ public class Sale
 
     public boolean searchItemID(int itemID)
     {
-        return true;
+        boolean found = false;
+
+
+        return found;
     }
 
     public ShoppingCart addNewItem(int itemQuant, ItemDTO itemInfo)
@@ -36,7 +41,7 @@ public class Sale
 
     public ShoppingCart fetchFinalCart()
     {
-
+    
     }
 
     public SaleDTO updatedSalePrice(float discount, ShoppingCart totalSale)
@@ -56,7 +61,7 @@ public class Sale
 
     public Receipt fetchReceipt()
     {
-        
+
     }
 
     public void createShoppingCart()
