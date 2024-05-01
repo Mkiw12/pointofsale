@@ -83,12 +83,12 @@ public class ShoppingCart {
         }
         return totVat;
     }
-
+/* 
     public double changeAmount() {
         double change = 0;
 
        // change = 
 
-    }
+    }*/
 }
 
