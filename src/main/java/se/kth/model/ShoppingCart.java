@@ -2,11 +2,11 @@ package se.kth.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import se.kth.integration.*;
+
 
 public class ShoppingCart {
     private List<ItemAndQuantity> items;
-    private InventorySystem inventory; // Dependency on InventorySystem
+   
 
     public ShoppingCart() {
         this.items = new ArrayList<>();

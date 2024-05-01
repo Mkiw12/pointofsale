@@ -6,4 +6,9 @@ public class AccountingSystem
     {
         
     }
+    
+    public void updateRev()
+    {
+
+    }
 }

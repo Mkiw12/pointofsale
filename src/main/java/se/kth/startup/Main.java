@@ -6,6 +6,8 @@ import se.kth.controller.Controller;
 import se.kth.view.*;
 import se.kth.integration.*;
 import se.kth.model.ItemDTO;
+import se.kth.model.Printer;
+import se.kth.model.Sale;
 import se.kth.model.ShoppingCart;
 
 
@@ -14,7 +16,9 @@ import se.kth.model.ShoppingCart;
  */
 public class Main
 {
-    private InventorySystem inventorySystem;
+    private InventorySystem inventory;
+    private AccountingSystem accounting;
+    private SalesLog log;
 /**
  * The main method used to start the entire application.
  *
@@ -25,8 +29,11 @@ public class Main
     {
         // Retrieve the list of available items from ItemCatalog
         InventorySystem inventory = new InventorySystem();  // Setup inventory system
+        AccountingSystem accounting = new AccountingSystem();
+        SalesLog log = new SalesLog();
+        Printer print = new Printer();
         //ShoppingCart cart = new ShoppingCart();
-        Controller controller = new Controller(inventory);
+        Controller controller = new Controller(inventory, accounting, log, print);
         View view = new View(controller);
         view.runFakeExe();
 

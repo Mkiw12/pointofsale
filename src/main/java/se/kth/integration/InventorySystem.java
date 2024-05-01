@@ -49,4 +49,8 @@ public class InventorySystem
         return false;
     }
 
+    public void updateInventory()
+    {
+        
+    }
 }

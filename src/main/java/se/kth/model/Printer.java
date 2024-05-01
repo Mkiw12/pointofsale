@@ -1,15 +1,11 @@
-package se.kth.integration;
+package se.kth.model;
 
 
-
-import se.kth.model.ShoppingCart;
 
 import java.time.LocalTime;
 
-import se.kth.model.Receipt;
-
 public class Printer {
-    public static void printReceipt(ShoppingCart cart) {
+    public void printReceipt(ShoppingCart cart) {
         LocalTime currentTime = LocalTime.now();
         Receipt receipt = new Receipt(cart, currentTime);
         String receiptText = receipt.createReceipt();

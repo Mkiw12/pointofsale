@@ -8,12 +8,18 @@ import se.kth.model.*;
 public class Controller {
     private ShoppingCart cart;
     private InventorySystem inventory;
+    private AccountingSystem accounting;
+    private SalesLog log;
     private Sale currentSale;  // Instance variable to keep track of the current sale
+    private Printer print;
 
 
-    public Controller(InventorySystem inventory) {
+    public Controller(InventorySystem inventory, AccountingSystem accounting, SalesLog log, Printer print) {
         this.inventory = inventory;
-        this.cart = new ShoppingCart(); // Initialize the shopping cart here or in initiateSale
+        this.accounting = accounting;
+        this.log = log;
+        this.print = print;
+        //this.cart = new ShoppingCart(); // Initialize the shopping cart here or in initiateSale
         
     }
 
@@ -30,15 +36,7 @@ public class Controller {
     }
     
 
-    /*public void scanItems(int itemId, int quantity) {
-        ItemDTO item = inventory.findItemById(itemId);
-        if (item != null) {
-            cart.addItem(item, quantity);
-            //System.out.println("Added " + quantity + " of " + item.getItemName() + " to the cart.");
-        } else {
-            //System.out.println("Item with ID " + itemId + " not found.");
-        }
-    }*/
+
     public String regItems(int itemId, int quantity) {
         ItemDTO item = inventory.findItemById(itemId);
         if (item != null) {
@@ -55,7 +53,10 @@ public class Controller {
         // Here you might also want to update inventory and log the sale details
         //return total;
         // Example usage in the View or Controller
-        Printer.printReceipt(cart);
+        accounting.updateRev();
+        inventory.updateInventory();
+        log.saveSaleInfo();
+        print.printReceipt(cart);
 
     }
 
