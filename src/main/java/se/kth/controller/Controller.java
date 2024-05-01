@@ -78,6 +78,8 @@ import java.util.List;
 import se.kth.integration.*;
 import se.kth.model.*;
 
+import se.kth.model.payment;
+
 /**
  * The Controller class manages interactions between the UI and the system's core functionalities,
  * including inventory, accounting, sales logging, and receipt printing. It handles the lifecycle
@@ -90,6 +92,7 @@ public class Controller {
     private SalesLog log;
     private Sale currentSale; // Instance variable to keep track of the current sale
     private Printer print;
+    private Payment payment;
 
     /**
      * Constructs a new Controller object with specified systems and utilities.
@@ -99,11 +102,12 @@ public class Controller {
      * @param log the sales log to record transactions
      * @param print the printer system to output receipts
      */
-    public Controller(InventorySystem inventory, AccountingSystem accounting, SalesLog log, Printer print) {
+    public Controller(InventorySystem inventory, AccountingSystem accounting, SalesLog log, Printer print, Payment payment) {
         this.inventory = inventory;
         this.accounting = accounting;
         this.log = log;
         this.print = print;
+        this.payment = payment;
     }
 
     /**
