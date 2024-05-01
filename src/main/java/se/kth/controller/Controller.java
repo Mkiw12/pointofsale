@@ -147,7 +147,7 @@ public class Controller {
 
     public double Change(double paidAmount)
     {
-        return cart.calculateChange(paidAmount, getFinalCost());
+        return payment.calculateChange(paidAmount, getFinalCost());
     }
 
     /**
@@ -162,7 +162,7 @@ public class Controller {
         accounting.updateRev();
         inventory.updateInventory();
         log.saveSaleInfo();
-        print.printReceipt(cart, amountP);
+        print.printReceipt(cart, amountP, payment);
     }
 
     /**

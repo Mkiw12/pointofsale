@@ -68,10 +68,10 @@ public class Receipt
     private LocalTime saleTime;
     private Payment pay;
 
-    public Receipt(ShoppingCart cart, LocalTime saleTime) {
+    public Receipt(ShoppingCart cart, LocalTime saleTime, Payment pay) {
         this.cart = cart;
         this.saleTime = saleTime;
-        
+        this.pay = pay;
     }
 
     /**
@@ -105,7 +105,7 @@ public class Receipt
         receipt.append("--------------------------------------------------\n");
         receipt.append("Total: $").append(String.format("%.2f",cart.getTotalCost())).append("\n");
         receipt.append("TotalVAT: $").append(String.format("%.2f", cart.getVatTotal())).append("\n");  // Format to 2 decimal places
-        receipt.append("Change: $").append(String.format("%.2f", cart.calculateChange(amountP,cart.getTotalCost()))).append("\n");
+        receipt.append("Change: $").append(String.format("%.2f", pay.calculateChange(amountP,cart.getTotalCost()))).append("\n");
         receipt.append("Thank you for your purchase!\n");
 
         return receipt.toString();

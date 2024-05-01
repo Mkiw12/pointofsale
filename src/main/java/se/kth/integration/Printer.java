@@ -5,6 +5,7 @@ import java.time.LocalTime;
 
 import se.kth.model.Receipt;
 import se.kth.model.ShoppingCart;
+import se.kth.model.Payment;
 
 /**
  * Handles the printing of receipts for transactions processed within the system.
@@ -18,9 +19,9 @@ public class Printer {
      *
      * @param cart the ShoppingCart containing the items and quantities purchased
      */
-    public void printReceipt(ShoppingCart cart, double amountP) {
+    public void printReceipt(ShoppingCart cart, double amountP, Payment paid) {
         LocalTime currentTime = LocalTime.now(); // Capture the current time for the receipt timestamp
-        Receipt receipt = new Receipt(cart, currentTime); // Create a new Receipt instance with the current cart and time
+        Receipt receipt = new Receipt(cart, currentTime, paid); // Create a new Receipt instance with the current cart and time
         String receiptText = receipt.createReceipt(amountP); // Generate the receipt text
 
         System.out.println(receiptText); // Print the receipt to the console
