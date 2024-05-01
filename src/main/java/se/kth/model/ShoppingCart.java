@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import se.kth.integration.*;
 
+
 public class ShoppingCart {
     private List<ItemAndQuantity> items;
     private InventorySystem inventory; // Dependency on InventorySystem
@@ -50,4 +51,25 @@ public class ShoppingCart {
     public List<ItemAndQuantity> getItems() {
         return new ArrayList<>(this.items); // Return a copy of the list to prevent external modifications
     }
+
+    public double getVatTotal() {
+        double totVat = 0;
+
+        for (ItemAndQuantity itemQuantity : items) {
+            ItemDTO item = itemQuantity.getItem();
+            int quantity = itemQuantity.getQuantity();
+            double price = item.getPrice();
+            double VATRate = item.getVAT(); // Assuming getVAT returns a decimal representing the VAT rate (e.g., 1.20 for 20% VAT)
+            totVat += (price * VATRate - price) * quantity; // Calculate VAT for each item
+        }
+        return totVat;
+    }
+
+    public double changeAmount() {
+        double change = 0;
+
+       // change = 
+
+    }
 }
+

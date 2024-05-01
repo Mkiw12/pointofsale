@@ -4,6 +4,7 @@ import java.time.LocalTime;
 import java.util.List;
 import se.kth.controller.*;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class Receipt 
 {
@@ -73,11 +74,13 @@ public class Receipt
 
     public String createReceipt() {
         StringBuilder receipt = new StringBuilder();
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+
         receipt.append("RECEIPT\n");
         receipt.append("--------------------------------------------------\n");
 
         List<ItemAndQuantity> items = cart.getItems();
-        receipt.append("Time => ").append(saleTime.toString()).append("\n");
+        receipt.append("Time of sale: ").append(saleTime.format(timeFormatter)).append("\n");
         for (ItemAndQuantity item : items) {
             receipt.append(item.getItem().getItemName())
                    .append(" - Qty: ")
@@ -86,13 +89,14 @@ public class Receipt
                    .append(item.getItem().getPrice())
                    .append(" - Subtotal: $")
                    .append(item.getQuantity() * item.getItem().getPrice())
-                   .append(" - Taxrate ")
-                   .append(item.getItem().getVAT()-1)
+                   .append(" - Taxrate: ")
+                   .append(String.format("%.2f",item.getItem().getVAT()-1))
                    .append("\n");
         }
 
         receipt.append("--------------------------------------------------\n");
-        receipt.append("Total: $").append(cart.getTotalCost()).append("\n");
+        receipt.append("Total: $").append(String.format("%.2f",cart.getTotalCost())).append("\n");
+        receipt.append("TotalVAT: $").append(String.format("%.2f", cart.getVatTotal())).append("\n");  // Format to 2 decimal places
         receipt.append("Thank you for your purchase!\n");
 
         return receipt.toString();

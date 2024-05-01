@@ -59,10 +59,7 @@ public class Sale
 
     }
 
-    public float changeAmount(float amountPaid)
-    {
-
-    }
+    
 
     public Receipt fetchReceipt()
     {
