@@ -83,7 +83,7 @@ public class Receipt
         StringBuilder receipt = new StringBuilder();
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
-        receipt.append("RECEIPT\n");
+        receipt.append("\nRECEIPT\n");
         receipt.append("--------------------------------------------------\n");
 
         List<ItemAndQuantity> items = cart.getItems();

@@ -78,7 +78,7 @@ import java.util.List;
 import se.kth.integration.*;
 import se.kth.model.*;
 
-import se.kth.model.payment;
+//import se.kth.model.payment;
 
 /**
  * The Controller class manages interactions between the UI and the system's core functionalities,
@@ -102,7 +102,7 @@ public class Controller {
      * @param log the sales log to record transactions
      * @param print the printer system to output receipts
      */
-    public Controller(InventorySystem inventory, AccountingSystem accounting, SalesLog log, Printer print, Payment payment) {
+    public Controller(InventorySystem inventory, AccountingSystem accounting, SalesLog log, Printer print , Payment payment) {
         this.inventory = inventory;
         this.accounting = accounting;
         this.log = log;
@@ -123,6 +123,7 @@ public class Controller {
      * @return the current ongoing sale
      */
     public Sale getCurrentSale() {
+        
         return currentSale;
     }
 
@@ -144,11 +145,20 @@ public class Controller {
         }
     }
 
+    public double Change(double paidAmount)
+    {
+        return payment.calculateChange(paidAmount, getFinalCost());
+    }
+
     /**
      * Completes the current sale, handles financial transactions, updates inventory,
      * logs the sale information, and prints the receipt.
      */
+
+
     public void endSale() {
+
+        //payment.calculateChange(getFinalCost(), paidAmount);
         accounting.updateRev();
         inventory.updateInventory();
         log.saveSaleInfo();
@@ -172,5 +182,10 @@ public class Controller {
      */
     public List<ItemDTO> getAvailableItems() {
         return inventory.getAllItems();
+    }
+
+    public double getFinalCost()
+    {
+        return cart.getTotalCost();
     }
 }
