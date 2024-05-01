@@ -84,9 +84,6 @@ public class ShoppingCart {
         return totVat;
     }
 
-    /*public double calculateChange(double amountPaid, double totalCost) 
-    {
-        return Math.max(0, amountPaid - totalCost); // Ensure that the change is not negative
-    }*/
+
 }
 

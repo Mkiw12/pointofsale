@@ -90,7 +90,7 @@ public class Controller {
     private InventorySystem inventory;
     private AccountingSystem accounting;
     private SalesLog log;
-    private Sale currentSale; // Instance variable to keep track of the current sale
+
     private Printer print;
     private Payment payment;
 
@@ -117,15 +117,7 @@ public class Controller {
         this.cart = new ShoppingCart();
     }
 
-    /**
-     * Returns the current sale instance.
-     *
-     * @return the current ongoing sale
-     */
-    public Sale getCurrentSale() {
-        
-        return currentSale;
-    }
+
 
     /**
      * Registers items into the current sale based on item ID and quantity.
