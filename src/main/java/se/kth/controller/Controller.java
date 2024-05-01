@@ -1,5 +1,7 @@
 package se.kth.controller;
 
+import java.util.List;
+
 import se.kth.integration.*;
 import se.kth.model.*;
 
@@ -37,13 +39,13 @@ public class Controller {
             //System.out.println("Item with ID " + itemId + " not found.");
         }
     }*/
-    public boolean regItems(int itemId, int quantity) {
+    public String regItems(int itemId, int quantity) {
         ItemDTO item = inventory.findItemById(itemId);
         if (item != null) {
             cart.addItem(item, quantity);
-            return true;
+            return item.getItemName();
         } else {
-            return false;
+            return null;
         }
     }
 
@@ -59,6 +61,10 @@ public class Controller {
 
     public boolean validateItemID(int itemID) {
         return inventory.findItemById(itemID) != null;
+    }
+
+    public List<ItemDTO> getAvailableItems() {
+        return inventory.getAllItems();
     }
 
 }
