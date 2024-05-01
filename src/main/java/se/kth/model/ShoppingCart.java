@@ -83,12 +83,10 @@ public class ShoppingCart {
         }
         return totVat;
     }
-/* 
-    public double changeAmount() {
-        double change = 0;
-
-       // change = 
-
-    }*/
+    
+    public double calculateChange(double amountPaid, double totalCost) 
+    {
+        return Math.max(0, amountPaid - totalCost); // Ensure that the change is not negative
+    }
 }
 

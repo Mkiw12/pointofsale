@@ -48,7 +48,7 @@ public class View {
 
                 System.out.println("This is your change " + controller.Change(paidAmount));
 
-                controller.endSale();
+                controller.endSale(paidAmount);
                 shopping = false;
             } else {
                 System.out.print("Enter quantity: ");

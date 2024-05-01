@@ -65,12 +65,13 @@ public class Receipt
 */
 
     private ShoppingCart cart;
-    private Sale endsale;
     private LocalTime saleTime;
+    private Payment pay;
 
     public Receipt(ShoppingCart cart, LocalTime saleTime) {
         this.cart = cart;
         this.saleTime = saleTime;
+        
     }
 
     /**
@@ -79,7 +80,7 @@ public class Receipt
      *
      * @return the formatted receipt string
      */
-    public String createReceipt() {
+    public String createReceipt(double amountP) {
         StringBuilder receipt = new StringBuilder();
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
@@ -104,6 +105,7 @@ public class Receipt
         receipt.append("--------------------------------------------------\n");
         receipt.append("Total: $").append(String.format("%.2f",cart.getTotalCost())).append("\n");
         receipt.append("TotalVAT: $").append(String.format("%.2f", cart.getVatTotal())).append("\n");  // Format to 2 decimal places
+        receipt.append("Change: $").append(String.format("%.2f", cart.calculateChange(amountP,cart.getTotalCost()))).append("\n");
         receipt.append("Thank you for your purchase!\n");
 
         return receipt.toString();
