@@ -44,4 +44,10 @@ public class ShoppingCart {
         }
         return totalCost;
     }
+
+
+
+    public List<ItemAndQuantity> getItems() {
+        return new ArrayList<>(this.items); // Return a copy of the list to prevent external modifications
+    }
 }

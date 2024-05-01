@@ -6,8 +6,8 @@ import java.time.LocalTime;
 public class Sale 
 {
     private LocalTime saleTime;
-    private Receipt receipt;
-    private int itemQuant;
+    //private Receipt receipt;
+    //private int itemQuant;
 
 
 
@@ -19,6 +19,11 @@ public class Sale
     private void setTimeOfSale()
     {
         saleTime = LocalTime.now();
+    }
+
+    public LocalTime getSaleTime()
+    {
+        return saleTime;
     }
 
     public ShoppingCart updateSale(int itemQuant, int itemID)
