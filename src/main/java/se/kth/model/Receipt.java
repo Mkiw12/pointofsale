@@ -1,3 +1,4 @@
+
 package se.kth.model;
 
 import java.time.LocalTime;
@@ -72,6 +73,12 @@ public class Receipt
         this.saleTime = saleTime;
     }
 
+    /**
+     * Generates a formatted receipt string based on the shopping cart contents and sale time.
+     * The receipt includes a list of items, their quantities, prices, and the total cost, including tax.
+     *
+     * @return the formatted receipt string
+     */
     public String createReceipt() {
         StringBuilder receipt = new StringBuilder();
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -102,5 +109,6 @@ public class Receipt
         return receipt.toString();
     }
 }
+
 
 

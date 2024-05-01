@@ -12,6 +12,7 @@ import org.junit.jupiter.api.TestTemplate;
 
 
 import se.kth.integration.*;
+import se.kth.model.Printer;
 import se.kth.model.Sale;
 import se.kth.view.*;
 import se.kth.controller.*;
@@ -28,8 +29,8 @@ public class ViewTest
 
     @BeforeEach
     public void setUp() {
-        Controller contr = new Controller(print, SaleL);
-        instanceToTest = new View(contr);
+       // Controller contr = new Controller(print, SaleL);
+        //instanceToTest = new View(contr);
         
         printoutBuffer = new ByteArrayOutputStream();
         PrintStream inMemSysOut = new PrintStream(printoutBuffer);
