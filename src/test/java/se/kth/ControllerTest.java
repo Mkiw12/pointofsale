@@ -2,7 +2,6 @@ package se.kth;
 
 import org.junit.jupiter.api.Test;
 import se.kth.integration.*;
-import se.kth.model.Printer;
 
 import static org.junit.jupiter.api.Assertions.*;
 import se.kth.controller.*;

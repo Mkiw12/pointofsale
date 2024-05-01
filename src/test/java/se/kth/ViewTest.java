@@ -12,7 +12,6 @@ import org.junit.jupiter.api.TestTemplate;
 
 
 import se.kth.integration.*;
-import se.kth.model.Printer;
 import se.kth.model.Sale;
 import se.kth.view.*;
 import se.kth.controller.*;

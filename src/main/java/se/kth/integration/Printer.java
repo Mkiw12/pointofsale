@@ -1,7 +1,10 @@
 
-package se.kth.model;
+package se.kth.integration;
 
 import java.time.LocalTime;
+
+import se.kth.model.Receipt;
+import se.kth.model.ShoppingCart;
 
 /**
  * Handles the printing of receipts for transactions processed within the system.

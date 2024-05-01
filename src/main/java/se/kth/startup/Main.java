@@ -4,7 +4,6 @@ package se.kth.startup;
 import se.kth.controller.Controller;
 import se.kth.view.*;
 import se.kth.integration.*;
-import se.kth.model.Printer;
 
 /**
  * Main class for starting the application. This class initializes all necessary components of the system,

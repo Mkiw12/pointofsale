@@ -13,6 +13,7 @@ public class SaleDTO
     private int priceTotal;
     private float priceAfterDiscount;
     private float vatTotal;
+    private 
 
     private List<ItemDTO> registerdItems;
 
