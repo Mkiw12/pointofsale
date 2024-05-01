@@ -1,19 +1,31 @@
+
 package se.kth.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Represents a shopping cart used in a retail transaction.
+ * The cart manages a collection of items and their quantities, allowing items to be added or modified.
+ */
 public class ShoppingCart {
-    private List<ItemAndQuantity> items;
-   
+    private List<ItemAndQuantity> items; // List to hold items along with their quantities
 
+    /**
+     * Constructs an empty shopping cart.
+     */
     public ShoppingCart() {
         this.items = new ArrayList<>();
-        
     }
 
-    // Adds an item to the shopping cart by item ID and quantity
+    /**
+     * Adds an item to the shopping cart or updates the quantity of an existing item.
+     * If the item is already present in the cart, it increases the quantity. Otherwise, it adds a new entry.
+     *
+     * @param item     the item to add to the cart
+     * @param quantity the quantity of the item to be added
+     * @return the updated list of items and quantities in the cart
+     */
     public List<ItemAndQuantity> addItem(ItemDTO item, int quantity) {
         int itemId = item.getItemId();
         boolean itemAlreadyRegistered = false;
@@ -36,8 +48,12 @@ public class ShoppingCart {
         return items;
     }
 
-    public double getTotalCost() 
-    {
+    /**
+     * Calculates the total cost of all items in the cart, including applicable taxes.
+     *
+     * @return the total cost of items in the cart
+     */
+    public double getTotalCost() {
         double totalCost = 0.0;
         for (ItemAndQuantity itemAndQuantity : items) {
             totalCost += itemAndQuantity.getItem().getPrice() * itemAndQuantity.getItem().getVAT() * itemAndQuantity.getQuantity();
@@ -45,8 +61,12 @@ public class ShoppingCart {
         return totalCost;
     }
 
-
-
+    /**
+     * Retrieves a copy of the list of items and quantities in the shopping cart.
+     * This prevents the original list from being modified externally.
+     *
+     * @return a copy of the list of items and their quantities
+     */
     public List<ItemAndQuantity> getItems() {
         return new ArrayList<>(this.items); // Return a copy of the list to prevent external modifications
     }
