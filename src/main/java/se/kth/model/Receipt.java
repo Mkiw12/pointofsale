@@ -3,66 +3,12 @@ package se.kth.model;
 
 import java.time.LocalTime;
 import java.util.List;
-import se.kth.controller.*;
-import java.time.*;
+
 import java.time.format.DateTimeFormatter;
 
 public class Receipt 
 {
-   /*  private float change;
-    private SaleDTO updatedSalePrice;
-    private Receipt receipt;
-    
-
-    private SaleDTO saleDetails;
-
-    // constructor
-    public Receipt(float change, SaleDTO saleDetails){
-
-        this.saleDetails = saleDetails;
-    }
-
-    
-  
-
-    public SaleDTO getsaleDetails(){
-
-        return saleDetails;
-    }
-
-    public String generateTextReceipt() {
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("RECEIPT\n");
-        sb.append("-----------------\n");
-        
-        sb.append(saleDetails.getRegisterdItems());
-        sb.append("-----------------\n");
-        sb.append(String.format("Time of sale:",saleDetails.getTime()));
-        sb.append(String.format("Total: %.2f\n", saleDetails.getPriceTotal()));
-        sb.append(String.format("Tax: %.2f\n", saleDetails.getVatTotal()));
-        sb.append(String.format("Change: %.2f\n",saleDetails.getChange()));
-        sb.append("-----------------\n");
-        sb.append("Thank you for shopping!\n");
-        return sb.toString();
-
-
-    public Receipt(){
-
-
-    }
-
-
-
-
-
-    public Receipt createReceipt(float change, SaleDTO updatedSalePrice)
-    {
-        return receipt;
-    }
-
-
-*/
+   
 
     private ShoppingCart cart;
     private LocalTime saleTime;

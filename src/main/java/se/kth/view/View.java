@@ -45,7 +45,7 @@ public class View {
                 System.out.println("Totalcost is: " + controller.getFinalCost());
                 System.out.print("Enter amount paid: ");
                 double paidAmount = scanner.nextDouble();
-                System.out.println("This is your change " + controller.Change(paidAmount));
+                System.out.println("This is your change " + String.format("%.2f", controller.Change(paidAmount)));
                 controller.endSale(paidAmount);
                 shopping = false;
             } else {

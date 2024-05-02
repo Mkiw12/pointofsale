@@ -1,131 +1,51 @@
-/*package se.kth.controller;
-
-import java.util.List;
-
-import se.kth.integration.*;
-import se.kth.model.*;
-
-public class Controller {
-    private ShoppingCart cart;
-    private InventorySystem inventory;
-    private AccountingSystem accounting;
-    private SalesLog log;
-    private Sale currentSale;  // Instance variable to keep track of the current sale
-    private Printer print;
-
-
-    public Controller(InventorySystem inventory, AccountingSystem accounting, SalesLog log, Printer print) {
-        this.inventory = inventory;
-        this.accounting = accounting;
-        this.log = log;
-        this.print = print;
-        //this.cart = new ShoppingCart(); // Initialize the shopping cart here or in initiateSale
-        
-    }
-
-    public void initiateSale() {
-        // Reset or prepare the shopping cart for a new sale
-        //this.currentSale = new Sale();  // Create a new sale for each transaction
-        this.cart = new ShoppingCart(); // Optionally create a new cart for each sale
-        //System.out.println("New sale has started.");
-    }
-
-    public Sale getCurrentSale()
-    {
-        return currentSale;
-    }
-    
-
-
-    public String regItems(int itemId, int quantity) {
-        ItemDTO item = inventory.findItemById(itemId);
-        if (item != null) {
-            cart.addItem(item, quantity);
-            return item.getItemName();
-        } else {
-            return null;
-        }
-    }
-
-    public void endSale() {
-        //double total = cart.getTotalCost();
-        //System.out.println("Sale completed. Total due: $" + total);
-        // Here you might also want to update inventory and log the sale details
-        //return total;
-        // Example usage in the View or Controller
-        accounting.updateRev();
-        inventory.updateInventory();
-        log.saveSaleInfo();
-        print.printReceipt(cart);
-
-    }
-
-    public boolean validateItemID(int itemID) {
-        return inventory.findItemById(itemID) != null;
-    }
-
-    public List<ItemDTO> getAvailableItems() {
-        return inventory.getAllItems();
-    }
-
-    
-}
-*/
 package se.kth.controller;
 
 import java.util.List;
-
 import se.kth.integration.*;
 import se.kth.model.*;
 
-//import se.kth.model.payment;
-
 /**
- * The Controller class manages interactions between the UI and the system's core functionalities,
- * including inventory, accounting, sales logging, and receipt printing. It handles the lifecycle
- * of a sale from initiation to completion.
+ * Manages the coordination between user interface and back-end system components, facilitating
+ * the entire sales process from initiation to conclusion. This class integrates systems such as 
+ * inventory management, accounting, sales logging, and receipt printing, ensuring seamless transaction
+ * processing and data consistency.
  */
 public class Controller {
     private ShoppingCart cart;
     private InventorySystem inventory;
     private AccountingSystem accounting;
     private SalesLog log;
-
     private Printer print;
     private Payment payment;
 
     /**
-     * Constructs a new Controller object with specified systems and utilities.
-     *
-     * @param inventory the inventory system to be used for item data and updates
-     * @param accounting the accounting system to manage financial transactions
-     * @param log the sales log to record transactions
-     * @param print the printer system to output receipts
+     * Initializes a new Controller instance, configuring all necessary components for operation.
+     * This setup includes systems for managing inventory, financial transactions, sales logging,
+     * and receipt printing, each essential for running the sales operations smoothly.
      */
-    public Controller(InventorySystem inventory, AccountingSystem accounting, SalesLog log, Printer print , Payment payment) {
-        this.inventory = inventory;
-        this.accounting = accounting;
-        this.log = log;
-        this.print = print;
-        this.payment = payment;
+    public Controller() {
+        this.inventory = new InventorySystem();
+        this.accounting = new AccountingSystem();
+        this.log = new SalesLog();
+        this.print = new Printer();
+        this.payment = new Payment();
     }
 
     /**
-     * Initiates a new sale, preparing the shopping cart and setting up necessary state.
+     * Initiates a new sale by preparing a new shopping cart to collect items.
+     * This method sets up a fresh state for handling a new customer transaction.
      */
     public void initiateSale() {
         this.cart = new ShoppingCart();
     }
 
-
-
     /**
-     * Registers items into the current sale based on item ID and quantity.
-     * Updates the shopping cart and checks inventory for item existence.
+     * Adds an item to the current sale based on its ID and specified quantity.
+     * It checks inventory availability and updates the cart accordingly.
      *
-     * @param itemId   the ID of the item to be added
-     * @param quantity the quantity of the item to be added
-     * @return the name of the item added, or null if the item does not exist
+     * @param itemId   the unique identifier of the item to be added
+     * @param quantity the number of units of the item to add
+     * @return the name of the item added if found and added successfully, otherwise null
      */
     public String regItems(int itemId, int quantity) {
         ItemDTO item = inventory.findItemById(itemId);
@@ -137,47 +57,55 @@ public class Controller {
         }
     }
 
-    public double Change(double paidAmount)
-    {
+    /**
+     * Calculates the change to be returned to the customer given the amount paid.
+     *
+     * @param paidAmount the amount of money given by the customer
+     * @return the amount of change to be returned
+     */
+    public double Change(double paidAmount) {
         return payment.calculateChange(paidAmount, getFinalCost());
     }
 
     /**
-     * Completes the current sale, handles financial transactions, updates inventory,
-     * logs the sale information, and prints the receipt.
+     * Finalizes the current sale by processing payment, updating relevant systems,
+     * and printing the receipt with details of the transaction, including the total amount
+     * and change due.
+     *
+     * @param amountP the total amount paid by the customer
      */
-
-
     public void endSale(double amountP) {
-
-        //payment.calculateChange(getFinalCost(), paidAmount);
         accounting.updateRev();
         inventory.updateInventory();
-        log.saveSaleInfo();
+        log.saveSaleInfo(cart);
         print.printReceipt(cart, amountP, payment);
     }
 
     /**
-     * Validates if an item ID exists in the inventory.
+     * Checks whether a specified item ID exists within the inventory.
      *
-     * @param itemID the item ID to be checked
-     * @return true if the item exists in inventory, false otherwise
+     * @param itemID the ID of the item to validate
+     * @return true if the item exists in the inventory, false otherwise
      */
     public boolean validateItemID(int itemID) {
         return inventory.findItemById(itemID) != null;
     }
 
     /**
-     * Retrieves a list of all available items in the inventory.
+     * Retrieves all items currently available for sale from the inventory.
      *
-     * @return a list of items available for sale
+     * @return a list of all available items
      */
     public List<ItemDTO> getAvailableItems() {
         return inventory.getAllItems();
     }
 
-    public double getFinalCost()
-    {
+    /**
+     * Calculates the total cost of all items currently in the shopping cart.
+     *
+     * @return the total cost to be paid for the items in the cart
+     */
+    public double getFinalCost() {
         return cart.getTotalCost();
     }
 }
