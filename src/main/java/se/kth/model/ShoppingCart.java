@@ -32,16 +32,16 @@ public class ShoppingCart {
         
         for (ItemAndQuantity currentIterationItem : items) {
             if (currentIterationItem.getItem().getItemId() == itemId) {
-                // Update existing item's quantity
+                
                 currentIterationItem.setQuantity(currentIterationItem.getQuantity() + quantity);
                 itemAlreadyRegistered = true;
                 System.out.println("Added " + quantity + " of " + item.getItemName() + " to the cart.");
-                break; // Break as we've found and updated the item
+                break; 
             }
         }
 
         if (!itemAlreadyRegistered) {
-            // If the item was not found in the list, add it as a new entry
+            
             items.add(new ItemAndQuantity(item, quantity));
         }
 
@@ -84,8 +84,8 @@ public class ShoppingCart {
             ItemDTO item = itemQuantity.getItem();
             int quantity = itemQuantity.getQuantity();
             double price = item.getPrice();
-            double VATRate = item.getVAT(); // Assuming getVAT returns a decimal representing the VAT rate (e.g., 1.20 for 20% VAT)
-            totVat += (price * VATRate - price) * quantity; // Calculate VAT for each item
+            double VATRate = item.getVAT(); 
+            totVat += (price * VATRate - price) * quantity; 
         }
         return totVat;
     }

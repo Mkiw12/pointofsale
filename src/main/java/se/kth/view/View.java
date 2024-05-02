@@ -62,7 +62,7 @@ public class View {
             }
         }
 
-        scanner.close(); // Close the scanner when the user interaction is complete
+        scanner.close();
     }
 }
 

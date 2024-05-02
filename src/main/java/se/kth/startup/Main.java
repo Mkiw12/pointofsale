@@ -18,11 +18,11 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        // Initialize the controller 
+        
         Controller controller = new Controller();
         
-        // Initialize and start the View which handles all user interactions
+        
         View view = new View(controller);
-        view.runFakeExe(); // Start the simulation of the execution process (consider renaming this method to better reflect its purpose)
+        view.runFakeExe(); 
     }
 }

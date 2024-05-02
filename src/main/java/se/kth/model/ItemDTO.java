@@ -8,10 +8,10 @@ package se.kth.model;
  */
 public class ItemDTO {
 
-    private String itemName;    // Name of the item
-    private double itemVat;     // VAT rate for the item
-    private int itemID;         // Unique identifier for the item
-    private double itemPrice;   // Price of the item
+    private String itemName;    
+    private double itemVat;     
+    private int itemID;         
+    private double itemPrice;   
 
     /**
      * Constructs an ItemDTO with specified details.
