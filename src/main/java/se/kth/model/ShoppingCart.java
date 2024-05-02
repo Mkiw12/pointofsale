@@ -9,7 +9,7 @@ import java.util.List;
  * The cart manages a collection of items and their quantities, allowing items to be added or modified.
  */
 public class ShoppingCart {
-    private List<ItemAndQuantity> items; // List to hold items along with their quantities
+    private List<ItemAndQuantity> items;
 
     /**
      * Constructs an empty shopping cart.
@@ -36,7 +36,7 @@ public class ShoppingCart {
                 currentIterationItem.setQuantity(currentIterationItem.getQuantity() + quantity);
                 itemAlreadyRegistered = true;
                 System.out.println("Added " + quantity + " of " + item.getItemName() + " to the cart.");
-                break; 
+                break;
             }
         }
 
@@ -68,7 +68,7 @@ public class ShoppingCart {
      * @return a copy of the list of items and their quantities
      */
     public List<ItemAndQuantity> getItems() {
-        return new ArrayList<>(this.items); // Return a copy of the list to prevent external modifications
+        return new ArrayList<>(this.items); 
     }
 
 
@@ -84,8 +84,8 @@ public class ShoppingCart {
             ItemDTO item = itemQuantity.getItem();
             int quantity = itemQuantity.getQuantity();
             double price = item.getPrice();
-            double VATRate = item.getVAT(); 
-            totVat += (price * VATRate - price) * quantity; 
+            double VATRate = item.getVAT();
+            totVat += (price * VATRate - price) * quantity;
         }
         return totVat;
     }

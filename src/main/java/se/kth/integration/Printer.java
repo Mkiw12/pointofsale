@@ -20,9 +20,9 @@ public class Printer {
      * @param cart the ShoppingCart containing the items and quantities purchased
      */
     public void printReceipt(ShoppingCart cart, double amountP, Payment paid) {
-        LocalTime currentTime = LocalTime.now(); 
-        Receipt receipt = new Receipt(cart, currentTime, paid); 
-        String receiptText = receipt.createReceipt(amountP); 
+        LocalTime currentTime = LocalTime.now();
+        Receipt receipt = new Receipt(cart, currentTime, paid);
+        String receiptText = receipt.createReceipt(amountP);
 
         System.out.println(receiptText); 
         
