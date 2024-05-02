@@ -44,12 +44,8 @@ public class ShoppingCartTest {
     void testTotalCostCalculation() {
         cart.addItem(itemMock, 2);
         double expectedCost = 100.0 * 1.25 * 2; 
-<<<<<<< HEAD
         assertEquals(expectedCost, cart.getTotalCost(),"The total cost should be calculated correctly.");
-=======
-        assertEquals(expectedCost, cart.getTotalCost());
->>>>>>> 46329242e43493ed9016067ef83d9595c612098d
-    }
+    }    
 
     @Test
     void testGetItemsIntegrity() {
