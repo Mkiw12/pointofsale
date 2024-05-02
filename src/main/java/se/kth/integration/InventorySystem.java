@@ -71,6 +71,6 @@ public class InventorySystem {
      * This method is currently a placeholder and should be implemented to update inventory quantities.
      */
     public void updateInventory() {
-        // Implementation needed to update inventory quantities based on sales and restocks.
+        
     }
 }
