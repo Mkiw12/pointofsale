@@ -71,6 +71,12 @@ public class ShoppingCart {
         return new ArrayList<>(this.items); // Return a copy of the list to prevent external modifications
     }
 
+
+    /**
+     * Calculates the total VAT of all items in the cart
+     *
+     * @return the total VAT of all items in the cart
+     */
     public double getVatTotal() {
         double totVat = 0;
 
