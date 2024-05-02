@@ -17,7 +17,8 @@ public class Main {
      * @param args the command line arguments; not used in this application
      */
     public static void main(String[] args) {
-        // Initialize the controller with its required subsystems (inventory, accounting, sales log, and printing)
+
+        // Initialize the controller 
         Controller controller = new Controller();
         
         // Initialize and start the View which handles all user interactions
