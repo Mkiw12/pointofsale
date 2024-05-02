@@ -3,7 +3,6 @@ package se.kth.integration;
 public class AccountingSystem 
 {
     
-
     /**
     * Constructs an AccountingSystem and initializes it with a default set of items.
     */
