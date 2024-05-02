@@ -41,7 +41,7 @@ public class View {
             System.out.print("Enter item ID to add to cart (0 to end sale): ");
             int itemId = scanner.nextInt();
             if (itemId == 0) {
-                //System.out.println("finished");
+                
                 System.out.println("Totalcost is: " + controller.getFinalCost());
                 System.out.print("Enter amount paid: ");
                 double paidAmount = scanner.nextDouble();
