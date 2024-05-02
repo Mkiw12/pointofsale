@@ -59,7 +59,7 @@ public class Receipt
         receipt.append("--------------------------------------------------\n");
         receipt.append("Total: $").append(String.format("%.2f",cart.getTotalCost())).append("\n");
         receipt.append("TotalVAT: $").append(String.format("%.2f", cart.getVatTotal())).append("\n");
-        receipt.append("Paid Amount: $").append(String.format("%.2f", paidAmount)).append("\n");
+        receipt.append("Paid Amount: $").append(String.format("%.2f", amountP)).append("\n");
         receipt.append("Change: $").append(String.format("%.2f", pay.calculateChange(amountP,cart.getTotalCost()))).append("\n");
         receipt.append("Thank you for your purchase!\n");
 
