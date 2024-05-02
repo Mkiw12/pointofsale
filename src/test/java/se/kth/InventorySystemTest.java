@@ -22,7 +22,7 @@ public class InventorySystemTest {
         List<ItemDTO> items = inventorySystem.getAllItems();
 
         assertNotNull(items,"The returned items list should not be null.");
-        assertEquals(7, items.size(),"The items list should contain exactly 7 items."); // Assuming 7 items are initially added in InventorySystem
+        assertEquals(7, items.size(),"The items list should contain exactly 7 items."); 
 
     }
 
@@ -36,7 +36,7 @@ public class InventorySystemTest {
     @Test
     void testFindItemByIdNonExistingItem() {
 
-        ItemDTO item = inventorySystem.findItemById(999); // Assuming ID 999 does not exist
+        ItemDTO item = inventorySystem.findItemById(999); 
         assertNull(item, "No item should be found with ID 999.");
 
     }
@@ -44,13 +44,13 @@ public class InventorySystemTest {
     @Test
     void testLegitIDTrue() {
 
-        assertTrue(inventorySystem.legitID(1),"ID 1 should be recognized as legitimate."); // ID 1 is known to be in the initial set
+        assertTrue(inventorySystem.legitID(1),"ID 1 should be recognized as legitimate."); 
     }
 
     @Test
     void testLegitIDFalse() {
 
-        assertFalse(inventorySystem.legitID(999),"ID 999 should be recognized as illegitimate."); // Assuming ID 999 does not exist
+        assertFalse(inventorySystem.legitID(999),"ID 999 should be recognized as illegitimate."); 
 
     }
 }
