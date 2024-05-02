@@ -24,14 +24,10 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        InventorySystem inventory = new InventorySystem(); 
-        AccountingSystem accounting = new AccountingSystem();
-        SalesLog log = new SalesLog();
-        Printer print = new Printer();
-        Payment pay = new Payment();
+
 
         
-        Controller controller = new Controller(inventory, accounting, log, print, pay);
+        Controller controller = new Controller();
         
         
         View view = new View(controller);
