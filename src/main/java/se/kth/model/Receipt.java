@@ -7,66 +7,28 @@ import se.kth.controller.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a receipt for a shopping transaction. This class is responsible for generating a formatted receipt.
+ * The receipt includes details about the items purchased, their quantities, prices, the total cost, and the time of the sale.
+ * It is designed to be used post-sale to provide a detailed summary of the transaction.
+ *
+ * The Receipt class interacts with the ShoppingCart to access item details and uses a Payment instance to handle payment-related information.
+ */
 public class Receipt 
 {
-   /*  private float change;
-    private SaleDTO updatedSalePrice;
-    private Receipt receipt;
     
-
-    private SaleDTO saleDetails;
-
-    // constructor
-    public Receipt(float change, SaleDTO saleDetails){
-
-        this.saleDetails = saleDetails;
-    }
-
-    
+/**
+ * Constructs a new Receipt instance.
+ *
+ * @param cart       The ShoppingCart associated with this receipt, containing items, quantities, and prices.
+ * @param saleTime   The time at which the sale was completed, used for recording the exact sale timestamp.
+ * @param pay        The Payment instance containing details about the payment made for the transaction.
+ */
   
-
-    public SaleDTO getsaleDetails(){
-
-        return saleDetails;
-    }
-
-    public String generateTextReceipt() {
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("RECEIPT\n");
-        sb.append("-----------------\n");
-        
-        sb.append(saleDetails.getRegisterdItems());
-        sb.append("-----------------\n");
-        sb.append(String.format("Time of sale:",saleDetails.getTime()));
-        sb.append(String.format("Total: %.2f\n", saleDetails.getPriceTotal()));
-        sb.append(String.format("Tax: %.2f\n", saleDetails.getVatTotal()));
-        sb.append(String.format("Change: %.2f\n",saleDetails.getChange()));
-        sb.append("-----------------\n");
-        sb.append("Thank you for shopping!\n");
-        return sb.toString();
-
-
-    public Receipt(){
-
-
-    }
-
-
-
-
-
-    public Receipt createReceipt(float change, SaleDTO updatedSalePrice)
-    {
-        return receipt;
-    }
-
-
-*/
-
     private ShoppingCart cart;
     private LocalTime saleTime;
     private Payment pay;
+
 
     public Receipt(ShoppingCart cart, LocalTime saleTime, Payment pay) {
         this.cart = cart;
@@ -104,7 +66,8 @@ public class Receipt
 
         receipt.append("--------------------------------------------------\n");
         receipt.append("Total: $").append(String.format("%.2f",cart.getTotalCost())).append("\n");
-        receipt.append("TotalVAT: $").append(String.format("%.2f", cart.getVatTotal())).append("\n");  // Format to 2 decimal places
+        receipt.append("TotalVAT: $").append(String.format("%.2f", cart.getVatTotal())).append("\n");
+        receipt.append("Paid Amount: $").append(String.format("%.2f", paidAmount)).append("\n");
         receipt.append("Change: $").append(String.format("%.2f", pay.calculateChange(amountP,cart.getTotalCost()))).append("\n");
         receipt.append("Thank you for your purchase!\n");
 
