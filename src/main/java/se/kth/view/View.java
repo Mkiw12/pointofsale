@@ -42,12 +42,10 @@ public class View {
             int itemId = scanner.nextInt();
             if (itemId == 0) {
                 //System.out.println("finished");
-                System.out.println("\ntotalcost is: " + controller.getFinalCost());
+                System.out.println("Totalcost is: " + controller.getFinalCost());
                 System.out.print("Enter amount paid: ");
-                double paidAmount = scanner.nextInt();
-
+                double paidAmount = scanner.nextDouble();
                 System.out.println("This is your change " + controller.Change(paidAmount));
-
                 controller.endSale(paidAmount);
                 shopping = false;
             } else {

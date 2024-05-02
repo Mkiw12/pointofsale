@@ -19,7 +19,7 @@ public class InventorySystem {
      */
     public InventorySystem() {
         items.add(new ItemDTO("boll", 10, 1, 1.1));
-        items.add(new ItemDTO("bomb", 30, 2, 1.3));
+        items.add(new ItemDTO("tryffel", 30, 2, 1.3));
         items.add(new ItemDTO("fågel", 10, 3, 1.21));
         items.add(new ItemDTO("ägg", 30, 4, 1.32));
         items.add(new ItemDTO("vattenpistol", 10, 5, 1.6));
