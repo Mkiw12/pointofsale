@@ -43,7 +43,7 @@ public class ShoppingCartTest {
     @Test
     void testTotalCostCalculation() {
         cart.addItem(itemMock, 2);
-        double expectedCost = 100.0 * 1.25 * 2; // Price * VAT * Quantity
+        double expectedCost = 100.0 * 1.25 * 2; 
         assertEquals(expectedCost, cart.getTotalCost());
     }
 

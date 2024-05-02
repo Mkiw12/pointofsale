@@ -21,7 +21,7 @@ public class InventorySystemTest {
     void testGetAllItemsReturnsAllItems() {
         List<ItemDTO> items = inventorySystem.getAllItems();
         assertNotNull(items);
-        assertEquals(7, items.size()); // Assuming 7 items are initially added in InventorySystem
+        assertEquals(7, items.size()); 
     }
 
     @Test
@@ -33,17 +33,17 @@ public class InventorySystemTest {
 
     @Test
     void testFindItemByIdNonExistingItem() {
-        ItemDTO item = inventorySystem.findItemById(999); // Assuming ID 999 does not exist
+        ItemDTO item = inventorySystem.findItemById(999); 
         assertNull(item);
     }
 
     @Test
     void testLegitIDTrue() {
-        assertTrue(inventorySystem.legitID(1)); // ID 1 is known to be in the initial set
+        assertTrue(inventorySystem.legitID(1)); 
     }
 
     @Test
     void testLegitIDFalse() {
-        assertFalse(inventorySystem.legitID(999)); // Assuming ID 999 does not exist
+        assertFalse(inventorySystem.legitID(999)); 
     }
 }
