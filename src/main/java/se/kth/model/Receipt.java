@@ -6,6 +6,13 @@ import java.util.List;
 
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a receipt for a shopping transaction. This class is responsible for generating a formatted receipt.
+ * The receipt includes details about the items purchased, their quantities, prices, the total cost, and the time of the sale.
+ * It is designed to be used post-sale to provide a detailed summary of the transaction.
+ *
+ * The Receipt class interacts with the ShoppingCart to access item details and uses a Payment instance to handle payment-related information.
+ */
 public class Receipt 
 {
    
@@ -13,6 +20,7 @@ public class Receipt
     private ShoppingCart cart;
     private LocalTime saleTime;
     private Payment pay;
+
 
     public Receipt(ShoppingCart cart, LocalTime saleTime, Payment pay) {
         this.cart = cart;
@@ -50,7 +58,8 @@ public class Receipt
 
         receipt.append("--------------------------------------------------\n");
         receipt.append("Total: $").append(String.format("%.2f",cart.getTotalCost())).append("\n");
-        receipt.append("TotalVAT: $").append(String.format("%.2f", cart.getVatTotal())).append("\n");  // Format to 2 decimal places
+        receipt.append("TotalVAT: $").append(String.format("%.2f", cart.getVatTotal())).append("\n");
+        receipt.append("Paid Amount: $").append(String.format("%.2f", paidAmount)).append("\n");
         receipt.append("Change: $").append(String.format("%.2f", pay.calculateChange(amountP,cart.getTotalCost()))).append("\n");
         receipt.append("Thank you for your purchase!\n");
 
