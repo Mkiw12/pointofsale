@@ -4,7 +4,6 @@ package se.kth.view;
 import se.kth.controller.Controller;
 
 import java.util.List;
-//import se.kth.model.ItemDTO;
 import java.util.Scanner;
 
 /**
@@ -34,10 +33,7 @@ public class View {
         System.out.println("New sale has started.");
 
         System.out.println("Available Items:");
-        /*for (ItemDTO item : controller.getAvailableItems()) {
-            System.out.println("ID: " + item.getItemId() + " - Name: " + item.getItemName() + " - Price: $" + item.getPrice());
-        }*/
-         List<String> availableItems = controller.getFormattedAvailableItems();
+        List<String> availableItems = controller.getFormattedAvailableItems();
         for (String itemDetails : availableItems) {
             System.out.println(itemDetails);
         }
