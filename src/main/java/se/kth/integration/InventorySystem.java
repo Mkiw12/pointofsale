@@ -13,6 +13,7 @@ import se.kth.model.*;
 public class InventorySystem {
 
     private final List<ItemDTO> items = new ArrayList<>();
+    
 
     /**
      * Constructs an InventorySystem and initializes it with a default set of items.
@@ -25,6 +26,7 @@ public class InventorySystem {
         items.add(new ItemDTO("vattenpistol", 10, 5, 1.6));
         items.add(new ItemDTO("drake", 30, 6, 1.15));
         items.add(new ItemDTO("sak", 2, 7, 1.25));
+        items.add(new ItemDTO("Database connection failed", 0, 10, 0));
     }
 
     /**
@@ -41,35 +43,27 @@ public class InventorySystem {
      *
      * @param itemId the ID of the item to find
      * @return the ItemDTO if found, null otherwise
+     * @throws ItemNotFoundException if the Item with ItemId does not exist in inventory system
+     * @throws DatabaseNotReachedException if the database can not be reached, hardcoded to item with itemId 10 in this case
      */
-    public ItemDTO findItemById(int itemId) {
+    public ItemDTO findItemById(int itemId) throws ItemNotFoundException, DatabaseNotReachedException {
+       
+        if (itemId == 10){
+            throw new DatabaseNotReachedException("ERROR: Database connection failed");
+        }
+       
+       
         for (ItemDTO item : items) {
             if (item.getItemId() == itemId) {
                 return item;
             }
+          
         }
-        return null;
+
+        throw new ItemNotFoundException("ERROR: Item with ItemID: " + itemId + ", was not found in inventory");
     }
 
-    /**
-     * Checks if an item ID is valid and exists in the inventory.
-     *
-     * @param itemId the ID to validate
-     * @return true if the ID exists, false otherwise
-     */
-    public boolean legitID(int itemId) {
-        for (ItemDTO item : items) {
-            if (item.getItemId() == itemId) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Updates the inventory based on recent transactions.
-     * This method is currently a placeholder and should be implemented to update inventory quantities.
-     */
+ 
     public void updateInventory() {
         
     }

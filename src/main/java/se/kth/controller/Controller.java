@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import se.kth.integration.*;
 import se.kth.model.*;
+import se.kth.view.ErrorFileLogger;
+import se.kth.view.Logger;
+
 
 /**
  * Manages the coordination between user interface and back-end system components, facilitating
@@ -18,6 +21,8 @@ public class Controller {
     private SalesLog log;
     private Printer print;
     private Payment payment;
+    private Logger errorLogger;
+    private ArrayList<ShoppingCartObserver> shoppingCartObservers = new ArrayList<>();
 
     /**
      * Initializes a new Controller instance, configuring all necessary components for operation.
@@ -30,6 +35,8 @@ public class Controller {
         this.log = new SalesLog();
         this.print = new Printer();
         this.payment = new Payment();
+        this.errorLogger = new ErrorFileLogger();
+
     }
 
     /**
@@ -37,7 +44,8 @@ public class Controller {
      * This method sets up a fresh state for handling a new customer transaction.
      */
     public void initiateSale() {
-        this.cart = new ShoppingCart();
+        cart = new ShoppingCart();
+        cart.addShoppingCartObservers(shoppingCartObservers);
     }
 
     /**
@@ -47,15 +55,28 @@ public class Controller {
      * @param itemId   the unique identifier of the item to be added
      * @param quantity the number of units of the item to add
      * @return the name of the item added if found and added successfully, otherwise null
+     * @throws ItemNotFoundException if the Item with ItemId does not exist in inventory system
+     * @throws DatabaseNotReachedException if the database can't be reached
      */
-    public String regItems(int itemId, int quantity) {
-        ItemDTO item = inventory.findItemById(itemId);
-        if (item != null) {
+    public String regItems(int itemId, int quantity) throws ItemNotFoundException, DatabaseNotReachedException
+    
+    {
+        try {
+            ItemDTO item = inventory.findItemById(itemId);
+            if (item != null) {
             cart.addItem(item, quantity);
             return item.getItemName();
-        } else {
-            return null;
+            }
+        } catch(ItemNotFoundException e){
+            errorLogger.log(e.getMessage());
+            throw e;
         }
+          catch(DatabaseNotReachedException e){
+            errorLogger.log(e.getMessage());
+            throw e;
+          }
+
+        return null;
     }
 
     /**
@@ -82,15 +103,39 @@ public class Controller {
         print.printReceipt(cart, amountP, payment);
     }
 
-    /**
+   /*
+
+     * Checks whether a specified item ID exists within the inventory.
+     *
+     * @param itemID the ID of the item to validate
+     * @return true if the item exists in the inventory, false otherwise
+    
+    public boolean validateItemID(int itemID) {
+        return inventory.findItemById(itemID) != null;
+    } 
+    */
+
+/**
      * Checks whether a specified item ID exists within the inventory.
      *
      * @param itemID the ID of the item to validate
      * @return true if the item exists in the inventory, false otherwise
      */
-    public boolean validateItemID(int itemID) {
-        return inventory.findItemById(itemID) != null;
-    }
+   
+   /*   public boolean validateItemID(int itemID) {
+        
+        try {
+            // Attempt to find the item
+            ItemDTO item = inventory.findItemById(itemID);
+            return true; // Item found
+        } catch (ItemNotFoundException e) {
+            // Log the error for debugging purposes
+           // FileLogger.logError("Item not found: " + e.getMessage());
+
+            // Return false since the item was not found
+            return false;
+        }
+    }*/ 
 
     /**
      * Retrieves all items currently available for sale from the inventory.
@@ -122,5 +167,14 @@ public class Controller {
             formattedItems.add(String.format("ID: %d - Name: %s - Price: $%.2f", item.getItemId(), item.getItemName(), item.getPrice()));
         }
         return formattedItems;
+    }
+
+    /**
+     * Adds an observers to the list of observers
+     * @param obs List of observers to be added to the list
+     */
+    public void addObserver(ShoppingCartObserver obs){
+
+        shoppingCartObservers.add(obs);
     }
 }

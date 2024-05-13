@@ -10,6 +10,7 @@ import java.util.List;
  */
 public class ShoppingCart {
     private List<ItemAndQuantity> items;
+    private ArrayList<ShoppingCartObserver> shoppingCartObservers = new ArrayList<>();
 
     /**
      * Constructs an empty shopping cart.
@@ -59,7 +60,8 @@ public class ShoppingCart {
             totalCost += itemAndQuantity.getItem().getPrice() * itemAndQuantity.getItem().getVAT() * itemAndQuantity.getQuantity();
         }
         return totalCost;
-    }
+        
+    }   
 
     /**
      * Retrieves a copy of the list of items and quantities in the shopping cart.
@@ -87,9 +89,32 @@ public class ShoppingCart {
             double VATRate = item.getVAT();
             totVat += (price * VATRate - price) * quantity;
         }
+        finalizeSale();
         return totVat;
     }
 
+    public void finalizeSale() {
+        double totalCost = getTotalCost();
+        // Additional code to handle the sale process, like payment handling
+        notifyObservers(totalCost);  // Notify observers with the final sale amount
+    }
 
+
+
+    /**
+     * Adds observers from controller to a list.
+     * @param obs List of observers to be added to the list
+     */
+    public void addShoppingCartObservers(List<ShoppingCartObserver> obs){
+
+        shoppingCartObservers.addAll(obs);
+    }
+
+    public void notifyObservers(double finalSaleAmount){
+        for(ShoppingCartObserver obs : shoppingCartObservers){
+          obs.priceOfSale(getTotalCost());
+            
+        }
+    }
 }
 
