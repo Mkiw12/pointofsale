@@ -89,15 +89,16 @@ public class ShoppingCart {
             double VATRate = item.getVAT();
             totVat += (price * VATRate - price) * quantity;
         }
-        finalizeSale();
+        notifyObservers();
+
         return totVat;
     }
 
-    public void finalizeSale() {
+  /*   public void finalizeSale() {
         double totalCost = getTotalCost();
         // Additional code to handle the sale process, like payment handling
         notifyObservers(totalCost);  // Notify observers with the final sale amount
-    }
+    } */
 
 
 
@@ -109,8 +110,8 @@ public class ShoppingCart {
 
         shoppingCartObservers.addAll(obs);
     }
-
-    public void notifyObservers(double finalSaleAmount){
+    //double finalSaleAmount
+    public void notifyObservers(){
         for(ShoppingCartObserver obs : shoppingCartObservers){
           obs.priceOfSale(getTotalCost());
             

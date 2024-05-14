@@ -103,40 +103,6 @@ public class Controller {
         print.printReceipt(cart, amountP, payment);
     }
 
-   /*
-
-     * Checks whether a specified item ID exists within the inventory.
-     *
-     * @param itemID the ID of the item to validate
-     * @return true if the item exists in the inventory, false otherwise
-    
-    public boolean validateItemID(int itemID) {
-        return inventory.findItemById(itemID) != null;
-    } 
-    */
-
-/**
-     * Checks whether a specified item ID exists within the inventory.
-     *
-     * @param itemID the ID of the item to validate
-     * @return true if the item exists in the inventory, false otherwise
-     */
-   
-   /*   public boolean validateItemID(int itemID) {
-        
-        try {
-            // Attempt to find the item
-            ItemDTO item = inventory.findItemById(itemID);
-            return true; // Item found
-        } catch (ItemNotFoundException e) {
-            // Log the error for debugging purposes
-           // FileLogger.logError("Item not found: " + e.getMessage());
-
-            // Return false since the item was not found
-            return false;
-        }
-    }*/ 
-
     /**
      * Retrieves all items currently available for sale from the inventory.
      *
