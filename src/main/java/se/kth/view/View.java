@@ -3,6 +3,7 @@ package se.kth.view;
 
 import se.kth.controller.Controller;
 import se.kth.integration.ItemNotFoundException;
+import se.kth.model.ItemDTO;
 import se.kth.integration.DatabaseNotReachedException;
 
 import java.util.List;
@@ -37,9 +38,9 @@ public class View {
         System.out.println("New sale has started.");
 
         System.out.println("Available Items:");
-        List<String> availableItems = controller.getFormattedAvailableItems();
-        for (String itemDetails : availableItems) {
-            System.out.println(itemDetails);
+        List<ItemDTO> availableItems = controller.getAvailableItems();
+        for (ItemDTO item : availableItems) {
+            System.out.println(formatItemDetails(item));
         }
 
     boolean shopping = true;
@@ -83,9 +84,10 @@ public class View {
         System.out.println("New sale has started.");
 
         System.out.println("Available Items:");
-        List<String> availableItems = controller.getFormattedAvailableItems();
-        for (String itemDetails : availableItems) {
-            System.out.println(itemDetails);
+
+        List<ItemDTO> availableItems = controller.getAvailableItems();
+        for (ItemDTO item : availableItems) {
+            System.out.println(formatItemDetails(item));
         }
 
     boolean shopping = true;
@@ -122,7 +124,15 @@ public class View {
 
 
 
-
+    /**
+     * Formats the details of an item for display.
+     *
+     * @param item the item to format
+     * @return a formatted string containing the item's details
+     */
+    private String formatItemDetails(ItemDTO item) {
+        return String.format("ID: %d - Name: %s - Price: $%.2f", item.getItemId(), item.getItemName(), item.getPrice());
+    }
 
 
         

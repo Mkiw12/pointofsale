@@ -121,19 +121,7 @@ public class Controller {
         return cart.getTotalCost();
     }
 
-    /**
-     * Retrieves a formatted list of available items.
-     *
-     * @return List of strings with each string containing details of an item.
-     */
-    public List<String> getFormattedAvailableItems() {
-        List<ItemDTO> items = inventory.getAllItems();
-        List<String> formattedItems = new ArrayList<>();
-        for (ItemDTO item : items) {
-            formattedItems.add(String.format("ID: %d - Name: %s - Price: $%.2f", item.getItemId(), item.getItemName(), item.getPrice()));
-        }
-        return formattedItems;
-    }
+
 
     /**
      * Adds an observers to the list of observers

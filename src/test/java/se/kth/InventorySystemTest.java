@@ -1,56 +1,65 @@
 package se.kth;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
+import org.junit.jupiter.api.BeforeEach;
 import se.kth.model.ItemDTO;
-import se.kth.integration.*;
+import se.kth.integration.DatabaseNotReachedException;
+import se.kth.integration.InventorySystem;
+import se.kth.integration.ItemNotFoundException;
 
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class InventorySystemTest {
     private InventorySystem inventorySystem;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         inventorySystem = new InventorySystem();
     }
 
     @Test
-    void testGetAllItemsReturnsAllItems() {
+    public void testGetAllItems() {
         List<ItemDTO> items = inventorySystem.getAllItems();
-
-        assertNotNull(items,"The returned items list should not be null.");
-        assertEquals(7, items.size(),"The items list should contain exactly 7 items."); 
-
+        assertEquals(8, items.size(), "The inventory should contain 8 items.");
     }
 
     @Test
-    void testFindItemByIdExistingItem() {
-        ItemDTO item = inventorySystem.findItemById(1);
-        assertNotNull(item,"Item with ID 1 should not be null.");
-        assertEquals("boll", item.getItemName(),"The item name should match 'boll'.");
+    public void testFindItemById_Success() {
+        try {
+            ItemDTO item = inventorySystem.findItemById(1);
+            assertNotNull(item, "Item should not be null.");
+            assertEquals(1, item.getItemId(), "Item ID should be 1.");
+            assertEquals("boll", item.getItemName(), "Item name should be 'boll'.");
+        } catch (ItemNotFoundException | DatabaseNotReachedException e) {
+            fail("Exception should not be thrown for valid item ID.");
+        }
     }
 
     @Test
-    void testFindItemByIdNonExistingItem() {
-
-        ItemDTO item = inventorySystem.findItemById(999); 
-        assertNull(item, "No item should be found with ID 999.");
-
+    public void testFindItemById_ItemNotFoundException() {
+        try {
+            inventorySystem.findItemById(99);
+            fail("ItemNotFoundException should be thrown for invalid item ID.");
+        } catch (ItemNotFoundException e) {
+            assertEquals("ERROR: Item with ItemID: 99, was not found in inventory", e.getMessage());
+        } catch (DatabaseNotReachedException e) {
+            fail("DatabaseNotReachedException should not be thrown for this test.");
+        }
     }
 
     @Test
-    void testLegitIDTrue() {
-
-        assertTrue(inventorySystem.legitID(1),"ID 1 should be recognized as legitimate."); 
+    public void testFindItemById_DatabaseNotReachedException() {
+        try {
+            inventorySystem.findItemById(10);
+            fail("DatabaseNotReachedException should be thrown for item ID 10.");
+        } catch (ItemNotFoundException e) {
+            fail("ItemNotFoundException should not be thrown for this test.");
+        } catch (DatabaseNotReachedException e) {
+            assertEquals("ERROR: Database connection failed", e.getMessage());
+        }
     }
 
-    @Test
-    void testLegitIDFalse() {
 
-        assertFalse(inventorySystem.legitID(999),"ID 999 should be recognized as illegitimate."); 
-
-    }
 }
