@@ -79,7 +79,7 @@ public class View {
      * Runs the second simulated execution of the system, allowing user interaction through a series of prompts and responses.
      * Users can start a new sale, add items to a shopping cart, and complete the sale.
      */
-    public void runFakeExe2(){
+    /*public void runFakeExe2(){
         controller.initiateSale();
         System.out.println("New sale has started.");
 
@@ -120,7 +120,7 @@ public class View {
 
 
     scanner.close();
-}
+}*/
 
 
 

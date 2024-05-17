@@ -3,7 +3,7 @@ package se.kth.integration;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BooleanSupplier;
+
 
 import se.kth.model.*;
 
@@ -69,8 +69,5 @@ public class InventorySystem {
         
     }
 
-    /*public BooleanSupplier legitID(int i) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'legitID'");
-    }*/
+
 }
