@@ -1,1 +1,2 @@
-2024-05-16T09:41:42.754 ERROR: Database connection failed
+2024-05-17T11:36:18.809 ERROR: Item with ItemID: 11, was not found in inventory
+2024-05-17T11:36:21.625 ERROR: Database connection failed

@@ -69,8 +69,8 @@ public class InventorySystem {
         
     }
 
-    public BooleanSupplier legitID(int i) {
+    /*public BooleanSupplier legitID(int i) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'legitID'");
-    }
+    }*/
 }
